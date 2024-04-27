@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Result</title>
+    <style>
+
+        #current-time {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        #current-date {
+            font-size: 18px;
+            color: #555;
+        }
+        .frequency {
+            text-align: center;
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        td {
+            color: #333;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .button:hover {
+            background-color: #ace6af;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Result</h1>
+    <a href="http://127.0.0.1:5000/" class="button">Back to Upload</a>
+    <a href="D:\Final Results" class="button">Find the Excel File</a>
+    
+    <p>Total Issued Cards: {{ frequency_sum }}</p>
+    <div id="current-time"></div>
+    <div id="current-date"></div>
+
+    <script>
+        // Get the current time and date
+        var currentDate = new Date();
+
+        // Format the time and date
+        var currentTime = currentDate.toLocaleTimeString();
+        var currentDateString = currentDate.toDateString();
+
+        // Display the formatted time and date
+        document.getElementById("current-time").innerHTML = "Current Time: " + currentTime;
+        document.getElementById("current-date").innerHTML = "Current Date: " + currentDateString;
+    </script>
+    <table>
+        <tr>
+            <th>Branch</th>
+            <th>No. Cards Issued</th>
+        </tr>
+        {% for row in result %}
+        <tr>
+            <td>{{ row.Element }}</td>
+            <td>{{ row.Frequency }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
